@@ -18,6 +18,7 @@ object Table_User {
     val PICTURE_LARGE = "picture_large"
     val PICTURE_MEDIUM = "picture_medium"
     val PICTURE_THUMBNAIL = "picture_thumbnail"
+    val FAVORITE = "favorite"
 }
 
 object Table_UserDeleted {

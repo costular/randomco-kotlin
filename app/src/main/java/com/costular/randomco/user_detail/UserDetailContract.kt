@@ -1,6 +1,7 @@
 package com.costular.randomco.user_detail
 
 import com.costular.randomco.BaseView
+import com.costular.randomco.data.User
 
 /**
  * Created by costular on 14/07/17.
@@ -11,12 +12,13 @@ interface UserDetailContract {
 
         fun showLoading(isVisible: Boolean)
 
-        fun loadUser(userEmail: String)
+        fun showUser(user: User)
 
+        fun showError(error: String)
     }
 
     interface Presenter {
 
-        // nothing here
+        fun loadUser(userEmail: String)
     }
 }

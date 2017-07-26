@@ -6,7 +6,6 @@ import org.jetbrains.anko.db.*
 import com.costular.randomco.data.source.local.Table_User as User
 import com.costular.randomco.data.source.local.Table_UserDeleted as UserDeleted
 
-
 /**
  * Created by costular on 14/07/17.
  */
@@ -32,7 +31,8 @@ class UsersDbHelper(context: Context) : ManagedSQLiteOpenHelper(context, UsersDb
                 User.REGISTERED to TEXT,
                 User.PICTURE_LARGE to TEXT,
                 User.PICTURE_MEDIUM to TEXT,
-                User.PICTURE_THUMBNAIL to TEXT)
+                User.PICTURE_THUMBNAIL to TEXT,
+                User.FAVORITE to INTEGER)
 
         db.createTable(UserDeleted.TABLE_NAME, true,
                 UserDeleted.EMAIL to TEXT + PRIMARY_KEY)

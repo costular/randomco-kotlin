@@ -1,27 +1,32 @@
 package com.costular.randomco.data.source.remote
 
-import android.content.Context
 import com.costular.randomco.data.User
+import com.costular.randomco.data.UserListResponse
 import com.costular.randomco.data.source.UserDataSource
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import ru.gildor.coroutines.retrofit.Result
-import ru.gildor.coroutines.retrofit.awaitResponse
-import ru.gildor.coroutines.retrofit.awaitResult
-import javax.inject.Inject
+import com.costular.randomco.utils.extensions.enqueue
 
 /**
  * Created by costular on 14/07/17.
  */
-class RemoteUserDataSource @Inject constructor(val usersAPIService: UsersAPIService) : UserDataSource {
+class RemoteUserDataSource(val usersAPIService: UsersAPIService) : UserDataSource {
 
-    override suspend fun getUsers(): List<User> {
-        val response: Response<List<User>> = usersAPIService.getUsers().awaitResponse()
-        return response.body()!!
+    override fun getUsers(success: (List<User>) -> Unit, error: (String) -> Unit) {
+        usersAPIService.getUsers()
+                .enqueue(
+                        { success(it.body()!!.results) },
+                        { error(it) }
+                )
     }
 
-    override suspend fun getUser(): User {
+    override fun getUser(email: String, success: (User) -> Unit, error: (String) -> Unit) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun deleteUser(email: String, success: () -> Unit, error: (String) -> Unit) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun favoriteUser(email: String, toFavorite: Boolean, success: () -> Unit, error: (String) -> Unit) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

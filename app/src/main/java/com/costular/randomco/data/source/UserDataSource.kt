@@ -7,8 +7,12 @@ import com.costular.randomco.data.User
  */
 interface UserDataSource {
 
-    suspend fun getUsers(): List<User>
+    fun getUsers(success: (List<User>) -> Unit, error: (String) -> Unit)
 
-    suspend fun getUser(): User
+    fun getUser(email: String, success: (User) -> Unit, error: (String) -> Unit)
+
+    fun deleteUser(email: String, success: () -> Unit, error: (String) -> Unit)
+
+    fun favoriteUser(email: String, isFavorite: Boolean, success: () -> Unit, error: (String) -> Unit)
 
 }
